@@ -3,7 +3,6 @@ package frc.team2412.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.team2412.robot.commands.ExampleCommand;
 
 import static frc.team2412.robot.RobotContainer.RobotConstants.*;
 
@@ -28,10 +27,10 @@ public class Controls {
 		robot = robotContainer;
 		// telling the button that when its pressed to execute example command with the
 		// in this case it causes the command to start running when the button is just pressed
-		if(EXAMPLE_CONNECTED) bindExampleControls();
+		if(INDEX_CONNECTED) bindExampleControls();
 	}
 
-	public void bindExampleControls(){
-		exampleButton.whenPressed(new ExampleCommand(robot.exampleSubsystem));
+	public void bindExampleControls() {
+		;
 	}
 }
