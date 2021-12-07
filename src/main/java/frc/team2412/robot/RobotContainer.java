@@ -1,19 +1,26 @@
 package frc.team2412.robot;
 
-import frc.team2412.robot.subsystems.ExampleSubsystem;
+import com.revrobotics.CANSparkMax;
 
-import static frc.team2412.robot.RobotContainer.RobotConstants.*;
+import edu.wpi.first.wpilibj.DigitalInput;
+import frc.team2412.robot.subsystems.IndexSubsystem;
 
 // this is the class for containing all the subsystems of the robot
 public class RobotContainer {
-	public static class RobotConstants{
-		public static boolean EXAMPLE_CONNECTED = true;
+	public static class RobotConstants {
+		public static boolean INDEX_CONNECTED = true;
 	}
 	// Subsystems
-	public ExampleSubsystem exampleSubsystem;
+	IndexSubsystem index;
 
 	public RobotContainer() {
 		// create and instance of example subsystem with the device from hardware map if the subsystem is connected
-		if(EXAMPLE_CONNECTED) exampleSubsystem = new ExampleSubsystem(Hardware.EXAMPLE_MOTOR);
+		if (RobotConstants.INDEX_CONNECTED) {
+			index
+				= new IndexSubsystem(new DigitalInput(0), new DigitalInput(1),
+						  new DigitalInput(2), new DigitalInput(3),
+						  new DigitalInput(4), new DigitalInput(5),
+						  null, null, null);
+		}
 	}
 }
