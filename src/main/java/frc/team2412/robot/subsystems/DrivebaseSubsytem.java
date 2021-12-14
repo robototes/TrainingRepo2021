@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import io.github.oblarg.oblog.Loggable;
 
-public class DrivebaseSubsystem extends SubsystemBase implements Loggable{
+import frc.team2412.robot.commands.DriveCommand;
+
+public class DrivebaseSubsytem extends SubsystemBase implements Loggable{
 
     
 	public static class DriveConstants {
@@ -36,7 +38,7 @@ public class DrivebaseSubsystem extends SubsystemBase implements Loggable{
 	public final CANSparkMax motorLeftOne, motorLeftTwo;
     public final CANSparkMax motorRightOne, motorRightTwo;
 
-	public DrivebaseSubsystem(
+	public DrivebaseSubsytem(
         CANSparkMax motorLeftOne,
         CANSparkMax motorRightOne,
         CANSparkMax motorLeftTwo,
