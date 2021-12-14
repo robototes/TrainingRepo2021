@@ -1,5 +1,8 @@
 package frc.team2412.robot.subsystems;
 
+import java.beans.Encoder;
+
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.robototes.units.Distance;
 import com.robototes.units.UnitTypes;
@@ -34,11 +37,11 @@ public class TurretSubsystem extends SubsystemBase implements Loggable {
 	// TurretState
 	private TurretState turretState;
 
-	// Create Turret Subsystem
+	// Create Turret Subsystems
 	public TurretSubsystem(CANSparkMax motor) {
 		this.motor = motor;
+
 		turretState = TurretState.STOPPED;
-		setName("TurretSubsystem");
 	}
 
 	// Methods
@@ -58,16 +61,19 @@ public class TurretSubsystem extends SubsystemBase implements Loggable {
 		turretState = TurretState.STOPPED;
 	}
 	
-	public void setWithConstraints(int angle, int rotate) {
-		if (angle <= TurretConstants.MAXIMUM_POSITION || angle > TurretConstants.MINIMUM_POSITION) {
+	public void setWithConstraints(int currentAngle, int rotationAmount) {
+		if (currentAngle >= TurretConstants.MAXIMUM_POSITION || currentAngle =< TurretConstants.MINIMUM_POSITION) {
 			stop();
 		}
 		else {
-			if (rotate > 0) {
+			if (rotationAmount > 0) { 
+				rotateRight();
+			}
+			else if (rotationAmount < 0){
 				rotateLeft();
 			}
 			else {
-				rotateRight();
+				stop();
 			}
 
 		}
