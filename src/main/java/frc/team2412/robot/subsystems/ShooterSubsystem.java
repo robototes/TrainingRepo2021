@@ -55,7 +55,10 @@ public class ShooterSubsystem extends SubsystemBase implements Loggable{
 	public ShooterSubsystem(CANSparkMax motor1, CANSparkMax motor2, CANSparkMax motor3, Servo servo1, Servo servo2) {
 		this.motor1 = motor1;
         this.motor2 = motor2;
+        this.motor2.setInverted(true);
+
         this.motor3 = motor3;
+
         this.servo1 = servo1;
         this.servo2 = servo2;
 		this.shooterSubsystemState = ShooterSubsystemState.OFF;
@@ -67,13 +70,15 @@ public class ShooterSubsystem extends SubsystemBase implements Loggable{
         double correctedSpeed = Math.max(Math.min(speed, ShooterConstants.MAX_SHOOT_SPEED), ShooterConstants.MIN_SHOOT_SPEED);
 
         this.motor1.set(correctedSpeed);
-        this.motor2.set(-correctedSpeed);
+        this.motor2.set(correctedSpeed);
+        this.shooterSubsystemState = ShooterSubsystemState.ON;
     }
 
     public void shooterOff() {
         // stop both motors
         this.motor1.set(0);
         this.motor2.set(0);
+        this.shooterSubsystemState = ShooterSubsystemState.OFF;
     }
 
     public void setHood(double degrees) {
