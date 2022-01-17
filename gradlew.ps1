@@ -75,6 +75,6 @@ $cmd = "$JAVA_EXE"
 # Execute Gradle
 $g = Start-Process -PassThru -NoNewWindow -FilePath "$cmd" -ArgumentList $params
 # Figure out exit
-$handle = $g.Handle # cache proc.Handle
+$handle = $g.Handle # cache g.Handle for .NET work around
 $g.WaitForExit();
 exit $g.ExitCode
