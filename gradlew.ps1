@@ -29,7 +29,7 @@
 #
 # ##########################################################################
 
-$APP_BASE_NAME = $pwd
+$APP_HOME = Split-Path $MyInvocation.MyCommand.Path
 $APP_NAME = "gradlew"
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
@@ -47,7 +47,6 @@ if (! $env:JAVA_HOME) {
     Write-Output "location of your Java installation."
     exit 1
   }
-  $env:JAVA_EXE="$JAVA_EXE"
 } else {
   $JAVA_EXE="$env:JAVA_HOME/bin/java.exe"
   if (-not (Test-Path -Path $JAVA_EXE -PathType Leaf)) {
@@ -67,14 +66,14 @@ foreach ($element in $args) {
 }
 
 # Setup the CLASSPATH
-$CLASSPATH = "$APP_BASE_NAME\gradle\wrapper\gradle-wrapper.jar"
+$CLASSPATH = "$APP_HOME\gradle\wrapper\gradle-wrapper.jar"
 
 # Setup parameters
-$params = "$DEFAULT_JVM_OPTS"+" "+"$JAVA_OPTS"+" "+"$GRADLE_OPTS"+" "+"-Dorg.gradle.appname=$APP_NAME"+" "+"-classpath $CLASSPATH"+" "+"org.gradle.wrapper.GradleWrapperMain"+" "+"$CMD_LINE_ARGS"
+$params = "$DEFAULT_JVM_OPTS"+" "+"$env:JAVA_OPTS"+" "+"$env:GRADLE_OPTS"+" "+"-Dorg.gradle.appname=$APP_NAME"+" "+"-classpath $CLASSPATH"+" "+"org.gradle.wrapper.GradleWrapperMain"+" "+"$CMD_LINE_ARGS"
 $cmd = "$JAVA_EXE"
 # Execute Gradle
 $g = Start-Process -PassThru -NoNewWindow -FilePath "$cmd" -ArgumentList $params
-# Figure out exit
+# Figure out return value
 $handle = $g.Handle # cache g.Handle for .NET work around
 $g.WaitForExit();
 exit $g.ExitCode
