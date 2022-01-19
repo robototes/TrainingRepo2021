@@ -1,13 +1,13 @@
 package frc.team2412.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.team2412.robot.subsystems.DrivebaseSubsytem;
+import frc.team2412.robot.subsystems.DrivebaseSubsystem;
 
 public class DriveCommand extends CommandBase {
     
-    private DrivebaseSubsytem subsystem;
+    private DrivebaseSubsystem subsystem;
     
-    public DriveCommand(DrivebaseSubsytem subsystem) {
+    public DriveCommand(DrivebaseSubsystem subsystem) {
         addRequirements(subsystem);
         this.subsystem = subsystem;
     }

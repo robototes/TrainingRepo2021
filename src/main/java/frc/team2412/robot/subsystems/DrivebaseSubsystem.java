@@ -10,7 +10,7 @@ import io.github.oblarg.oblog.Loggable;
 
 import frc.team2412.robot.commands.DriveCommand;
 
-public class DrivebaseSubsytem extends SubsystemBase implements Loggable{
+public class DrivebaseSubsystem extends SubsystemBase implements Loggable{
 
     
 	public static class DriveConstants {
@@ -38,7 +38,7 @@ public class DrivebaseSubsytem extends SubsystemBase implements Loggable{
 	public final CANSparkMax motorLeftOne, motorLeftTwo;
     public final CANSparkMax motorRightOne, motorRightTwo;
 
-	public DrivebaseSubsytem(
+	public DrivebaseSubsystem(
         CANSparkMax motorLeftOne,
         CANSparkMax motorRightOne,
         CANSparkMax motorLeftTwo,
