@@ -3,6 +3,7 @@ package frc.team2412.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.robototes.PIDControls.PIDController;
 import com.robototes.units.Distance;
 import com.robototes.units.UnitTypes;
@@ -65,10 +66,12 @@ public class ShooterSubsystem extends SubsystemBase implements Loggable{
 	// Create the example subsystem
 	public ShooterSubsystem(CANSparkMax leftMotor, CANSparkMax rightMotor, CANSparkMax motor3, Servo servo1, Servo servo2) {
         this.leftMotor = leftMotor;
+        this.leftMotor.setIdleMode(IdleMode.kCoast);
         this.leftPIDController = this.leftMotor.getPIDController();
 
         this.rightMotor = rightMotor;
         this.rightMotor.setInverted(true);
+        this.rightMotor.setIdleMode(IdleMode.kCoast);
         this.rightPIDController = this.rightMotor.getPIDController();
 
         setPIDtoDefault();
